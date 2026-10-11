@@ -3,390 +3,97 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LingoScriptures — Duolingo Edition</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LingoScriptures ✨ Scripture Quest</title>
 <style>
-:root{--green:#58cc02;--green-dark:#235300;--navy:#1b365d;--bg:#f0f2f5}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:#333}
-.hidden{display:none!important}
-button,input,select{font:inherit}
-button{border:0;border-radius:12px;padding:.8rem 1rem;font-weight:700;cursor:pointer;background:var(--green);color:#fff;box-shadow:0 4px 0 #3b8801}
-button:active{transform:translateY(2px);box-shadow:0 2px 0 #3b8801}
-#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;background:linear-gradient(135deg,var(--green),var(--green-dark))}
-.login-box{width:min(420px,100%);padding:2rem;background:#fff;border-radius:20px;text-align:center;box-shadow:0 10px 25px #0002}
-.duo-avatar{font-size:4rem}
-#username-input{width:100%;padding:.8rem;border:2px solid #ccc;border-radius:10px;margin:0 0 1rem}
-header{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;padding:1rem}
-.user-stats{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
-.stat-group{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-#rank-badge{padding:4px 12px;border-radius:20px;font-size:.85rem;font-weight:700}
-.badge-bronze{background:#cd7f32;color:white}.badge-silver{background:#c0c0c0;color:#333}.badge-gold{background:#ffd700;color:#333}.badge-platinum{background:#e5e4e2;color:#333}.badge-diamond{background:#b9f2ff;color:var(--navy)}.badge-god{background:linear-gradient(45deg,#ff007f,#7f00ff);color:white}
-.tab-content{padding:1.5rem 1rem 110px;max-width:1200px;margin:auto}
-.rank-card,.profile-card,.quiz-box{background:#fff;padding:1.5rem;border-radius:16px;box-shadow:0 4px 10px #0000000d}
-.rank-list{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
-.rank-item{padding:.8rem 1rem;border-radius:8px;background:#eee;display:flex;justify-content:space-between;gap:1rem;opacity:.55}
-.rank-item.achieved{opacity:1;background:#e2f0d9;border:2px solid var(--green);color:var(--green-dark)}
-.selector-bar{display:flex;flex-wrap:wrap;gap:10px;padding:1rem;background:#fff;margin-bottom:1rem;border-radius:10px}
-select{padding:.65rem;border-radius:8px;border:2px solid #e5e5e5;max-width:100%}
-.audio-controls{display:flex;gap:8px;flex-wrap:wrap}.audio-btn{background:#007aff;box-shadow:0 4px 0 #0051a8}.audio-btn.es{background:#ff9500;box-shadow:0 4px 0 #b36b00}
-.reader-container{display:flex;flex-direction:column;gap:8px}
-.verse-row{display:flex;align-items:flex-start;border-bottom:1px solid #e5e5e5;padding:1rem;background:#fff;border-radius:8px;gap:.5rem}
-.verse-number{flex:0 0 36px;text-align:center;font-weight:bold;color:#888}
-.text-column{flex:1;min-width:0;padding:0 1rem;font:1.08rem/1.7 Georgia,serif;overflow-wrap:anywhere}
-.english{border-right:2px solid var(--bg)}.spanish{color:#2c3e50}
-.quiz-box{max-width:540px;margin:1.5rem auto;text-align:center}
-#target-word{font-size:2.5rem;font-weight:bold;color:var(--navy);margin:1rem 0}
-#quiz-options{display:flex;flex-direction:column;gap:12px;margin-top:1.5rem}
-.opt-btn{background:#f8f9fa;color:#333;border:2px solid #e5e5e5;box-shadow:0 3px 0 #cbd5e1;text-align:left;padding:1rem}
-.opt-btn:hover{background:#f1f5f9}
-#quiz-feedback{margin-top:1rem;min-height:1.7rem;font-weight:700}
-.profile-card{text-align:center}
-.logout-btn{background:#ff3b30;box-shadow:0 4px 0 #b31a12;margin-top:1rem}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;min-height:70px;background:white;border-top:2px solid #e5e5e5;display:flex;justify-content:space-around;align-items:center;z-index:1000;padding:.4rem}
-.nav-btn{background:none;color:#777;box-shadow:none;padding:.6rem .8rem;border-radius:8px}
-.nav-btn:active{transform:none;box-shadow:none}.nav-btn.active{color:var(--green-dark);border-bottom:3px solid var(--green)}
-.notice{padding:1rem;background:#fff7d6;border-radius:10px;margin:1rem 0}
-@media(max-width:680px){.verse-row{flex-direction:column}.english{border-right:none;border-bottom:2px solid var(--bg);padding-bottom:1rem}.text-column{padding:0}.user-stats{font-size:.9rem}.rank-item{flex-wrap:wrap}.nav-btn{font-size:.85rem;padding:.5rem}}
+:root{--ink:#24304a;--muted:#69748a;--green:#58cc02;--green2:#328800;--purple:#7657e8;--pink:#ff6fae;--yellow:#ffd84d;--blue:#39b8ff;--cream:#fffdf6;--line:#e8eaf2}
+*{box-sizing:border-box}body{margin:0;background:#f6f7ff;color:var(--ink);font-family:ui-rounded,"Segoe UI",system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:12px 16px;font-weight:800;background:var(--green);color:#173900;box-shadow:0 4px 0 #399000;transition:transform .12s,filter .12s}button:hover{filter:brightness(1.03);transform:translateY(-1px)}button:active{transform:translateY(2px);box-shadow:0 2px 0 #399000}button:disabled{opacity:.55;cursor:not-allowed}.hidden{display:none!important}
+#login-screen{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 15% 15%,#fff 0 7%,transparent 8%),linear-gradient(135deg,#b6f58b,#70e4e7 52%,#d4baff)}.login-card{width:min(480px,100%);background:#fff;padding:32px;border:3px solid #fff;border-radius:30px;box-shadow:0 18px 50px #34408025;text-align:center}.mascot{font-size:76px;filter:drop-shadow(0 5px 0 #00000010)}.login-card h1{font-size:clamp(2rem,6vw,3rem);margin:4px 0;color:#4b36b4;letter-spacing:-1.5px}.login-card p{color:var(--muted);line-height:1.6}.login-card input{width:100%;padding:14px;border:2px solid var(--line);border-radius:14px;margin:8px 0 14px;outline-color:var(--purple)}
+header{position:sticky;top:0;z-index:20;background:#fffdf9ed;backdrop-filter:blur(12px);border-bottom:2px solid var(--line);padding:12px 18px}.topbar{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:1000;color:#4b36b4;font-size:1.2rem}.stats{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{padding:8px 12px;border-radius:999px;background:#fff2be;font-weight:850}.pill.xp{background:#e6ddff;color:#4b36b4}.pill.streak{background:#ffe0e9;color:#b52c65}.rank-badge{background:#dff8ce;color:#276600}
+main{max-width:1180px;margin:auto;padding:22px 18px 110px}.hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#7657e8,#a45eea 55%,#ff83b9);color:white;border-radius:28px;padding:28px;margin-bottom:20px;box-shadow:0 9px 0 #5941b8}.hero:after{content:"✨";position:absolute;right:30px;top:10px;font-size:80px;opacity:.65}.hero h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 8px}.hero p{max-width:650px;line-height:1.6;margin:0 0 18px}.hero button{background:var(--yellow);box-shadow:0 4px 0 #c9a300;color:#503d00}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.card{background:white;border:2px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 4px 0 #e4e6f2;min-width:0}.span-8{grid-column:span 8}.span-4{grid-column:span 4}.span-12{grid-column:span 12}.card h3{margin:0 0 8px}.muted{color:var(--muted)}.progress-track{height:14px;background:#eceefa;border-radius:999px;overflow:hidden;margin:12px 0}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#58cc02,#a5ee45);border-radius:999px;transition:width .3s}.league-list{display:grid;gap:8px;margin-top:14px}.league{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:#f5f6fb;color:#7d8597;font-weight:800}.league.unlocked{background:#e9fbdc;color:#286600;border:2px solid #a5e777}.league.current{outline:3px solid #ffd84d}.tag{font-size:.8rem;padding:4px 9px;background:#fff;border-radius:99px}.task{display:flex;gap:12px;align-items:center;margin:12px 0}.task-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:#e9e3ff;font-size:24px;flex-shrink:0}.task strong{display:block}.task small{color:var(--muted)}.tab{display:none}.tab.active{display:block}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.section-head h2{margin:0;font-size:1.8rem}.secondary{background:#e9e3ff;color:#4932ad;box-shadow:0 4px 0 #c7baf8}.orange{background:#ffad45;color:#633600;box-shadow:0 4px 0 #d98218}.blue{background:#4dbdff;color:#073c5a;box-shadow:0 4px 0 #2389c7}.danger{background:#ff6b78;color:#fff;box-shadow:0 4px 0 #c53a4c}.controls{display:flex;gap:8px;flex-wrap:wrap}.controls select{padding:11px;border:2px solid var(--line);border-radius:12px;background:white;max-width:100%}.notice{padding:13px 15px;background:#fff6cc;border-radius:14px;line-height:1.5;margin:12px 0}.pdf-frame{width:100%;height:min(76vh,850px);min-height:500px;border:2px solid var(--line);border-radius:16px;background:#f5f5f5}.verse-list{display:grid;gap:10px;margin-top:14px}.verse{display:grid;grid-template-columns:36px 1fr 1fr;gap:14px;padding:16px;border:2px solid var(--line);border-radius:16px;background:#fff}.vnum{font-weight:1000;color:var(--purple)}.vtext{font:1.05rem/1.65 Georgia,serif}.vtext.es{border-left:2px solid var(--line);padding-left:14px}.quiz-card{max-width:650px;margin:12px auto;text-align:center;padding:26px}.word{font-size:clamp(2.2rem,7vw,3.5rem);font-weight:1000;color:#4b36b4;margin:16px 0}.options{display:grid;gap:10px;margin:18px 0}.option{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:0 4px 0 #e1e4ef;text-align:left}.option.correct{background:#e6fbd8;border-color:#8bdc55}.option.wrong{background:#ffe5e9;border-color:#ff8fa0}.feedback{min-height:28px;font-weight:900}.profile-row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;justify-content:center;gap:8px;padding:10px;background:#fffef6f2;backdrop-filter:blur(12px);border-top:2px solid var(--line)}.nav-btn{background:transparent;color:#6d7488;box-shadow:none;border-radius:14px;min-width:100px}.nav-btn.active{background:#eee9ff;color:#4b36b4;box-shadow:inset 0 -3px #7657e8}.toast{position:fixed;right:18px;top:90px;z-index:50;background:#24304a;color:#fff;padding:13px 18px;border-radius:14px;box-shadow:0 8px 25px #0002;max-width:min(360px,90vw)}footer{text-align:center;color:var(--muted);padding:20px;font-size:.9rem}
+@media(max-width:760px){.span-8,.span-4{grid-column:span 12}.verse{grid-template-columns:30px 1fr}.vtext.es{grid-column:2;border-left:0;border-top:2px solid var(--line);padding:12px 0 0}.pdf-frame{min-height:400px}.nav-btn{min-width:0;flex:1;padding:10px 6px;font-size:.82rem}.hero{padding:22px}.hero:after{right:12px;font-size:50px}.login-card{padding:25px}}
 </style>
 </head>
 <body>
-<section id="login-screen" class="screen">
-  <div class="login-box">
-    <div class="duo-avatar" aria-hidden="true">📖🦉</div>
+<section id="login-screen">
+  <form class="login-card" id="login-form">
+    <div class="mascot" aria-hidden="true">🦉📚</div>
     <h1>LingoScriptures</h1>
-    <p>Study the Book of Mormon side-by-side, build your reading streak, and level up.</p>
-    <form id="login-form">
-      <label for="username-input">Username</label>
-      <input type="text" id="username-input" placeholder="Enter username" autocomplete="username" maxlength="40" required>
-      <button type="submit">Start Learning 🚀</button>
-    </form>
+    <p><strong>Your Scripture Quest starts here!</strong><br>Read, listen, learn Spanish, earn XP, and unlock legendary leagues.</p>
+    <label for="username-input">Choose your explorer name</label>
+    <input id="username-input" maxlength="40" autocomplete="username" placeholder="e.g. ScriptureStar" required>
+    <button type="submit" style="width:100%">LET'S QUEST! 🚀</button>
+    <p style="font-size:.85rem">Your progress saves in this browser on this device.</p>
+  </form>
+</section>
+<div id="app" class="hidden">
+<header><div class="topbar"><div class="brand">✨ LingoScriptures</div><div class="stats"><span class="pill streak" id="streak-display">🔥 0 day streak</span><span class="pill xp" id="xp-display">⭐ 0 XP</span><span class="pill rank-badge" id="rank-badge">🟫 Bronze</span></div></div></header>
+<main>
+<section class="tab active" id="home-tab">
+  <div class="hero"><h2 id="welcome-title">Ready for your next quest?</h2><p>Every chapter read and every word learned brings you closer to the next league. Little steps, legendary progress!</p><button id="start-reading">📖 Start reading</button></div>
+  <div class="grid">
+    <article class="card span-8"><h3>🏆 Your League Journey</h3><p class="muted">Earn XP to climb from Bronze all the way to God Mode.</p><div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div><p id="progress-label" class="muted">0 XP to your next league</p><div class="league-list" id="league-list"></div></article>
+    <article class="card span-4"><h3>🎯 Daily quests</h3><div class="task"><div class="task-icon">📖</div><div><strong>Read a chapter</strong><small>Claim your daily reading bonus</small></div></div><div class="task"><div class="task-icon">🧠</div><div><strong>Practice vocabulary</strong><small>Earn 10 XP per correct answer</small></div></div><div class="task"><div class="task-icon">🔊</div><div><strong>Listen & learn</strong><small>Audio narration in two languages</small></div></div><button id="start-quiz" class="secondary" style="width:100%;margin-top:10px">Play vocab quiz 🎮</button></article>
+    <article class="card span-12"><h3>🌈 Explorer tips</h3><p class="muted">Your parallel reader opens the Spanish–English Book of Mormon PDF. The sample text panel below is only for testing the audio buttons; it is not the complete scripture database.</p></article>
   </div>
 </section>
-<div id="app-container" class="hidden">
-<header><div class="user-stats">
-  <div class="stat-group"><strong id="display-name">Explorer</strong><span id="rank-badge" class="badge-bronze">Bronze Tier</span></div>
-  <div class="stat-group"><span id="streak-display">🔥 0 Day Streak</span><span id="xp-display">✨ 0 XP</span></div>
-</div></header>
-<main>
-  <section id="home-screen" class="tab-content">
-    <h2>Training Ground</h2>
-    <div class="rank-card"><h3>Scriptural Tier Rank Pipeline</h3><p>Earn XP by reading chapters and finishing vocabulary quizzes.</p>
-      <div class="rank-list">
-        <div class="rank-item" id="r-bronze"><span>🟫 Bronze League</span><small>Starting Base</small></div>
-        <div class="rank-item" id="r-silver"><span>⬜ Silver League</span><small>Requires 50 XP</small></div>
-        <div class="rank-item" id="r-gold"><span>🟨 Gold League</span><small>Requires 100 XP</small></div>
-        <div class="rank-item" id="r-platinum"><span>💿 Platinum League</span><small>Requires 200 XP</small></div>
-        <div class="rank-item" id="r-diamond"><span>💎 Diamond League</span><small>Requires 350 XP</small></div>
-        <div class="rank-item" id="r-god"><span>⚡ God Mode League</span><small>Requires 500+ XP</small></div>
-      </div>
-    </div>
-  </section>
-  <section id="reader-screen" class="tab-content hidden">
-    <div class="selector-bar">
-      <label>Book <select id="book-select"></select></label>
-      <label>Chapter <select id="chapter-select"></select></label>
-      <div class="audio-controls"><button type="button" id="read-en-btn" class="audio-btn">🔊 Read English</button><button type="button" id="read-es-btn" class="audio-btn es">🔊 Leer Español</button></div>
-    </div>
-    <div id="reader-notice" class="notice">A small sample chapter is included so the app runs immediately. To load the full scripture database, set SCRIPTURES_DATA_URL in the JavaScript to a direct URL to a compatible JSON file.</div>
-    <div id="reader-root" class="reader-container" aria-live="polite"></div>
-    <p><button type="button" id="complete-reading-btn">Mark chapter read (+15 XP daily bonus)</button></p>
-  </section>
-  <section id="quiz-screen" class="tab-content hidden">
-    <h2>🎯 Target Vocab Quiz</h2><p>Select the correct English meaning to earn points.</p>
-    <div class="quiz-box"><div>Translate this Spanish word:</div><div id="target-word">—</div><div id="quiz-options"></div><div id="quiz-feedback" aria-live="polite"></div><button type="button" id="next-quiz-btn">Next question</button></div>
-  </section>
-  <section id="profile-screen" class="tab-content hidden">
-    <div class="profile-card"><h2>Account</h2><p id="profile-summary">Your progress is saved in this browser on this device.</p><p>Achievements, XP, and streaks are stored locally; they are not synced to a server.</p><button type="button" id="logout-btn" class="logout-btn">Log Out Account</button></div>
-  </section>
+<section class="tab" id="reader-tab">
+  <div class="section-head"><h2>📖 Scripture Library</h2><div class="controls"><button class="secondary" id="open-pdf">Open PDF in new tab ↗</button></div></div>
+  <div class="card">
+    <h3>🇪🇸 Español + 🇺🇸 English</h3>
+    <p class="muted">Read the full parallel edition below. Use the PDF viewer's own page controls to move through the book.</p>
+    <div class="notice">If the PDF does not load inside this page, click <strong>Open PDF in new tab</strong>. The PDF is hosted by the source website, so its availability depends on that server and your browser.</div>
+    <iframe class="pdf-frame" id="scripture-pdf" title="Parallel Spanish-English Book of Mormon PDF" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p><a id="pdf-link" target="_blank" rel="noopener noreferrer">Open or download the parallel PDF directly</a></p>
+  </div>
+  <div class="card" style="margin-top:16px"><div class="section-head"><h3>🔊 Audio practice sample</h3><div class="controls"><button class="blue" id="read-en">🔊 Read English</button><button class="orange" id="read-es">🔊 Leer Español</button></div></div><p class="muted">These sample lines test your browser's speech feature. The PDF text itself cannot automatically be extracted by this simple single-file app.</p><div id="sample-verses" class="verse-list">
+    <div class="verse"><div class="vnum">1</div><div class="vtext english">I, Nephi, having been born of goodly parents, therefore I was taught somewhat in all the learning of my father.</div><div class="vtext es">Yo, Nefi, nací de buenos padres y recibí, por tanto, alguna instrucción en toda la ciencia de mi padre.</div></div>
+    <div class="verse"><div class="vnum">2</div><div class="vtext english">And having seen many afflictions in the course of my days, nevertheless, having been highly favored of the Lord in all my days.</div><div class="vtext es">Y habiendo visto muchas aflicciones en el curso de mis días, no obstante, el Señor me ha favorecido grandemente todos mis días.</div></div>
+  </div><p><button id="mark-read">✅ Mark today's reading complete (+15 XP)</button></p></div>
+</section>
+<section class="tab" id="quiz-tab">
+  <div class="section-head"><h2>🎯 Word Wizard</h2><span class="pill xp">+10 XP per correct answer</span></div>
+  <div class="card quiz-card"><p class="muted">Choose the English meaning of this Spanish word.</p><div id="target-word" class="word">padres</div><div id="quiz-options" class="options"></div><div id="quiz-feedback" class="feedback" aria-live="polite"></div><button id="next-question" class="secondary">Next word ➜</button></div>
+</section>
+<section class="tab" id="profile-tab">
+  <div class="section-head"><h2>🧑‍🚀 Explorer Profile</h2></div>
+  <div class="grid"><article class="card span-8"><h3>📊 Your stats</h3><div class="profile-row"><span>Explorer name</span><strong id="profile-name">—</strong></div><div class="profile-row"><span>Total XP</span><strong id="profile-xp">0</strong></div><div class="profile-row"><span>Current league</span><strong id="profile-rank">Bronze</strong></div><div class="profile-row"><span>Reading streak</span><strong id="profile-streak">0 days</strong></div><div class="profile-row"><span>Correct quiz answers</span><strong id="profile-correct">0</strong></div><p class="muted">Progress is saved only in this browser. Clearing browser data can erase it; this is not an online account or cloud sync.</p></article><article class="card span-4"><h3>⚙️ Account settings</h3><p class="muted">Switching users loads that user's saved local progress.</p><button id="switch-user" class="secondary" style="width:100%;margin-bottom:12px">Switch explorer</button><button id="logout" class="danger" style="width:100%">Log out</button></article></div>
+</section>
+<footer>Made for curious minds 🌟 Keep learning one verse at a time.</footer>
 </main>
-<nav class="bottom-nav" aria-label="Main navigation">
-  <button type="button" class="nav-btn active" data-tab="home-screen">🏠 Home</button>
-  <button type="button" class="nav-btn" data-tab="reader-screen">📖 Read</button>
-  <button type="button" class="nav-btn" data-tab="quiz-screen">🎯 Quiz</button>
-  <button type="button" class="nav-btn" data-tab="profile-screen">⚙️ Profile</button>
-</nav>
+<nav class="bottom-nav" aria-label="Main navigation"><button class="nav-btn active" data-tab="home-tab">🏠 Home</button><button class="nav-btn" data-tab="reader-tab">📖 Read</button><button class="nav-btn" data-tab="quiz-tab">🎯 Quiz</button><button class="nav-btn" data-tab="profile-tab">🧑 Profile</button></nav>
 </div>
+<div id="toast" class="toast hidden" role="status"></div>
 <script>
 "use strict";
-
-/*
- * Optional: replace this with a DIRECT URL to your JSON scripture file.
- * Expected shape:
- * { "books": [{ "book": "1 Nephi", "chapters": [
- *   { "verses": [{ "verse": 1, "text": "English...", "text_es": "Español..." }] }
- * ]}]}
- * If left blank, the built-in sample is used.
- */
-const SCRIPTURES_DATA_URL = "";
-
-const SAMPLE_SCRIPTURES = {
-  books: [{
-    book: "Sample Chapter",
-    chapters: [{
-      verses: [
-        { verse: 1, text: "This is a sample English verse. Connect a scripture JSON file to display the full text.", text_es: "Este es un versículo de muestra en inglés. Conecta un archivo JSON de las Escrituras para mostrar el texto completo." },
-        { verse: 2, text: "Choose a chapter and use the audio buttons to hear the displayed text.", text_es: "Elige un capítulo y usa los botones de audio para escuchar el texto mostrado." }
-      ]
-    }]
-  }]
-};
-
-const DICTIONARY = [
-  {word:"naciendo",correct:"being born",alternatives:["walking","being born","writing"]},
-  {word:"padres",correct:"parents",alternatives:["parents","priests","brothers"]},
-  {word:"instruido",correct:"instructed / taught",alternatives:["hidden","instructed / taught","punished"]},
-  {word:"ciencia",correct:"learning / knowledge",alternatives:["science","learning / knowledge","history"]},
-  {word:"aflicciones",correct:"afflictions",alternatives:["afflictions","affections","victories"]},
-  {word:"favorecido",correct:"favored",alternatives:["favored","forgotten","scared"]},
-  {word:"misterios",correct:"mysteries",alternatives:["mysteries","commandments","records"]},
-  {word:"conocimiento",correct:"knowledge",alternatives:["knowledge","covenant","vision"]},
-  {word:"proceder",correct:"proceedings / course",alternatives:["proceedings / course","prophecy","promise"]},
-  {word:"verdadero",correct:"true / trustworthy",alternatives:["false","true / trustworthy","old"]},
-  {word:"hacer",correct:"to make / do",alternatives:["to say","to see","to make / do"]},
-  {word:"testimonio",correct:"record / testimony",alternatives:["record / testimony","commandment","river"]}
-];
-const LEAGUE_TIERS = ["Bronze","Silver","Gold","Platinum","Diamond","God"];
-const TIER_THRESHOLDS = [0,50,100,200,350,500];
-let scriptureDatabase = "https://cdn.bencrowder.net/downloads/religious/parallel-edition/parallel-bofm-spa-eng.pdf#page=6";
-let profile = {username:"",xp:0,streak:0,lastReadDate:""};
-let currentQuizItem = null;
-let answeredCurrentQuiz = false;
-
-const $ = id => document.getElementById(id);
-const todayString = () => new Date().toDateString();
-
-function safeReadProfile(username) {
-  try {
-    const saved = localStorage.getItem(`bo_duo_${username}`);
-    if (!saved) return {username,xp:0,streak:0,lastReadDate:""};
-    const parsed = JSON.parse(saved);
-    return {
-      username,
-      xp: Number.isFinite(parsed.xp) ? Math.max(0, parsed.xp) : 0,
-      streak: Number.isFinite(parsed.streak) ? Math.max(0, parsed.streak) : 0,
-      lastReadDate: typeof parsed.lastReadDate === "string" ? parsed.lastReadDate : ""
-    };
-  } catch (error) {
-    console.warn("Could not read saved profile:", error);
-    return {username,xp:0,streak:0,lastReadDate:""};
-  }
-}
-function saveProfileMemory() {
-  try {
-    localStorage.setItem(`bo_duo_${profile.username}`, JSON.stringify(profile));
-  } catch (error) {
-    console.warn("Could not save profile:", error);
-    alert("Progress could not be saved in this browser. Check your browser storage settings.");
-  }
-}
-function authorizeSession(event) {
-  if (event) event.preventDefault();
-  const username = $("username-input").value.trim();
-  if (!username) { alert("Please enter a username."); return; }
-  profile = safeReadProfile(username);
-  try { localStorage.setItem("bo_active_user", username); } catch (error) {}
-  bootApplication();
-}
-function purgeSession() {
-  try { localStorage.removeItem("bo_active_user"); } catch (error) {}
-  window.speechSynthesis?.cancel();
-  $("app-container").classList.add("hidden");
-  $("login-screen").classList.remove("hidden");
-}
-function bootApplication() {
-  $("login-screen").classList.add("hidden");
-  $("app-container").classList.remove("hidden");
-  $("display-name").textContent = profile.username;
-  $("profile-summary").textContent = `${profile.username}: ${profile.xp} XP, ${profile.streak} day streak. Progress is saved in this browser.`;
-  recalculateStreaks();
-  refreshProgressUI();
-  loadScriptureData();
-}
-function recalculateStreaks() {
-  if (!profile.lastReadDate) {
-    profile.streak = 0;
-  } else {
-    const last = new Date(profile.lastReadDate);
-    const today = new Date(todayString());
-    const days = Math.round((today - last) / 86400000);
-    if (!Number.isFinite(days) || days > 1 || days < 0) profile.streak = 0;
-  }
-  saveProfileMemory();
-}
-function claimReadingDayStreak() {
-  const today = todayString();
-  if (profile.lastReadDate === today) {
-    alert("You've already claimed today's reading bonus. Keep going!");
-    return;
-  }
-  const last = profile.lastReadDate ? new Date(profile.lastReadDate) : null;
-  const daysSince = last ? Math.round((new Date(today) - last) / 86400000) : null;
-  profile.streak = daysSince === 1 ? profile.streak + 1 : 1;
-  profile.lastReadDate = today;
-  profile.xp += 15;
-  saveProfileMemory();
-  refreshProgressUI();
-  alert(`🔥 Reading day recorded! ${profile.streak} day streak (+15 XP).`);
-}
-function refreshProgressUI() {
-  $("xp-display").textContent = `✨ ${profile.xp} XP`;
-  $("streak-display").textContent = `🔥 ${profile.streak} Day Streak`;
-  let tierIndex = 0;
-  TIER_THRESHOLDS.forEach((threshold,index) => { if (profile.xp >= threshold) tierIndex = index; });
-  const tier = LEAGUE_TIERS[tierIndex];
-  $("rank-badge").className = `badge-${tier.toLowerCase()}`;
-  $("rank-badge").textContent = tier === "God" ? "⚡ God Mode" : `${tier} Tier`;
-  document.querySelectorAll(".rank-item").forEach(item => item.classList.remove("achieved"));
-  for (let i=0;i<=tierIndex;i++) {
-    const item = $(`r-${LEAGUE_TIERS[i].toLowerCase()}`);
-    if (item) item.classList.add("achieved");
-  }
-  $("profile-summary").textContent = `${profile.username}: ${profile.xp} XP, ${profile.streak} day streak. Progress is saved in this browser.`;
-}
-function showTab(tabId, clickedButton) {
-  document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button === clickedButton));
-  document.querySelectorAll(".tab-content").forEach(section => section.classList.toggle("hidden", section.id !== tabId));
-  if (tabId === "quiz-screen" && !currentQuizItem) reloadQuizFrame();
-  if (tabId === "reader-screen" && scriptureDatabase) renderParallelVerses($("book-select").value || 0, $("chapter-select").value || 0);
-}
-async function loadScriptureData() {
-  if (!SCRIPTURES_DATA_URL) {
-    assembleSelectors();
-    return;
-  }
-  try {
-    const response = await fetch(SCRIPTURES_DATA_URL);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    if (!data || !Array.isArray(data.books) || !data.books.length) throw new Error("JSON does not contain a non-empty books array.");
-    scriptureDatabase = data;
-    $("reader-notice").classList.add("hidden");
-    assembleSelectors();
-  } catch (error) {
-    console.error("Scripture data could not be loaded:", error);
-    $("reader-notice").textContent = "Could not load the scripture JSON file. Showing the built-in sample instead. Check SCRIPTURES_DATA_URL and the JSON structure.";
-    scriptureDatabase = SAMPLE_SCRIPTURES;
-    assembleSelectors();
-  }
-}
-function assembleSelectors() {
-  const bookSelect = $("book-select");
-  const chapterSelect = $("chapter-select");
-  bookSelect.replaceChildren();
-  scriptureDatabase.books.forEach((book,index) => {
-    const option = document.createElement("option");
-    option.value = String(index);
-    option.textContent = book.book || `Book ${index+1}`;
-    bookSelect.appendChild(option);
-  });
-  function fillChapters() {
-    chapterSelect.replaceChildren();
-    const book = scriptureDatabase.books[Number(bookSelect.value)];
-    (book?.chapters || []).forEach((chapter,index) => {
-      const option = document.createElement("option");
-      option.value = String(index);
-      option.textContent = `Chapter ${index+1}`;
-      chapterSelect.appendChild(option);
-    });
-    renderParallelVerses(bookSelect.value, chapterSelect.value || 0);
-  }
-  bookSelect.addEventListener("change", fillChapters);
-  chapterSelect.addEventListener("change", () => renderParallelVerses(bookSelect.value, chapterSelect.value));
-  fillChapters();
-}
-function renderParallelVerses(bookIndex, chapterIndex) {
-  const root = $("reader-root");
-  root.replaceChildren();
-  const book = scriptureDatabase?.books?.[Number(bookIndex)];
-  const chapter = book?.chapters?.[Number(chapterIndex)];
-  if (!chapter || !Array.isArray(chapter.verses)) {
-    root.textContent = "No verses were found for this chapter.";
-    return;
-  }
-  chapter.verses.forEach((verse,index) => {
-    const row = document.createElement("div");
-    row.className = "verse-row";
-    const number = document.createElement("div");
-    number.className = "verse-number";
-    number.textContent = verse.verse ?? index+1;
-    const english = document.createElement("div");
-    english.className = "text-column english";
-    english.textContent = verse.text ?? "";
-    const spanish = document.createElement("div");
-    spanish.className = "text-column spanish";
-    spanish.textContent = verse.text_es ?? verse.text ?? "";
-    row.append(number,english,spanish);
-    root.appendChild(row);
-  });
-}
-function triggerAudioNarration(langCode, selector) {
-  if (!("speechSynthesis" in window)) {
-    alert("Text-to-speech is not supported by this browser.");
-    return;
-  }
-  const nodes = document.querySelectorAll(selector);
-  const text = Array.from(nodes, node => node.textContent.trim()).filter(Boolean).join(". ");
-  if (!text) { alert("There is no text to read yet."); return; }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = langCode;
-  utterance.rate = 0.95;
-  window.speechSynthesis.speak(utterance);
-}
-function reloadQuizFrame() {
-  answeredCurrentQuiz = false;
-  $("quiz-feedback").textContent = "";
-  currentQuizItem = DICTIONARY[Math.floor(Math.random()*DICTIONARY.length)];
-  $("target-word").textContent = currentQuizItem.word;
-  const options = $("quiz-options");
-  options.replaceChildren();
-  currentQuizItem.alternatives.forEach(optionText => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "opt-btn";
-    button.textContent = optionText;
-    button.addEventListener("click", () => validateSelection(optionText, button));
-    options.appendChild(button);
-  });
-}
-function validateSelection(chosen, clickedButton) {
-  if (answeredCurrentQuiz) return;
-  const feedback = $("quiz-feedback");
-  if (chosen === currentQuizItem.correct) {
-    answeredCurrentQuiz = true;
-    feedback.textContent = "🎉 Correct! +10 XP";
-    feedback.style.color = "#237804";
-    profile.xp += 10;
-    saveProfileMemory();
-    refreshProgressUI();
-    document.querySelectorAll(".opt-btn").forEach(button => button.disabled = true);
-  } else {
-    feedback.textContent = "❌ Not quite. Try another option.";
-    feedback.style.color = "#c62828";
-    clickedButton.disabled = true;
-  }
-}
-
-$("login-form").addEventListener("submit", authorizeSession);
-$("logout-btn").addEventListener("click", purgeSession);
-$("read-en-btn").addEventListener("click", () => triggerAudioNarration("en-US", ".english"));
-$("read-es-btn").addEventListener("click", () => triggerAudioNarration("es-ES", ".spanish"));
-$("complete-reading-btn").addEventListener("click", claimReadingDayStreak);
-$("next-quiz-btn").addEventListener("click", reloadQuizFrame);
-document.querySelectorAll(".nav-btn").forEach(button => {
-  button.addEventListener("click", () => showTab(button.dataset.tab, button));
-});
-
-try {
-  const activeUser = localStorage.getItem("bo_active_user");
-  if (activeUser) {
-    profile = safeReadProfile(activeUser);
-    bootApplication();
-  }
-} catch (error) {
-  console.warn("Browser storage is unavailable:", error);
-}
+const PDF_URL="https://cdn.bencrowder.net/downloads/religious/parallel-edition/parallel-bofm-spa-eng.pdf";
+const $=id=>document.getElementById(id);
+const TIERS=[{name:"Bronze",xp:0,icon:"🟫"},{name:"Silver",xp:50,icon:"🥈"},{name:"Gold",xp:100,icon:"🥇"},{name:"Platinum",xp:200,icon:"💿"},{name:"Diamond",xp:350,icon:"💎"},{name:"God Mode",xp:500,icon:"⚡"}];
+const WORDS=[
+{word:"naciendo",correct:"being born",options:["walking","being born","writing"]},{word:"padres",correct:"parents",options:["parents","priests","brothers"]},{word:"instruido",correct:"taught / instructed",options:["hidden","taught / instructed","punished"]},{word:"ciencia",correct:"learning / knowledge",options:["science","learning / knowledge","history"]},{word:"aflicciones",correct:"afflictions",options:["afflictions","affections","victories"]},{word:"favorecido",correct:"favored",options:["favored","forgotten","scared"]},{word:"misterios",correct:"mysteries",options:["mysteries","commandments","records"]},{word:"conocimiento",correct:"knowledge",options:["knowledge","covenant","vision"]},{word:"proceder",correct:"course / proceedings",options:["course / proceedings","prophecy","promise"]},{word:"verdadero",correct:"true / trustworthy",options:["false","true / trustworthy","old"]},{word:"hacer",correct:"to make / do",options:["to say","to see","to make / do"]},{word:"testimonio",correct:"testimony / record",options:["testimony / record","commandment","river"]}];
+let profile=null, currentWord=null, answered=false, toastTimer=null;
+function safeRead(name){try{const data=JSON.parse(localStorage.getItem("lingo_user_"+name));if(data&&typeof data==="object")return {username:name,xp:Math.max(0,Number(data.xp)||0),streak:Math.max(0,Number(data.streak)||0),lastReadDate:typeof data.lastReadDate==="string"?data.lastReadDate:"",correct:Math.max(0,Number(data.correct)||0)};}catch(e){}return {username:name,xp:0,streak:0,lastReadDate:"",correct:0};}
+function save(){if(!profile)return;try{localStorage.setItem("lingo_user_"+profile.username,JSON.stringify(profile));localStorage.setItem("lingo_active_user",profile.username);}catch(e){showToast("Browser storage is unavailable; progress may not save.");}}
+function showToast(msg){const el=$("toast");el.textContent=msg;el.classList.remove("hidden");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.add("hidden"),2800);}
+function rank(){let result=TIERS[0];for(const t of TIERS)if(profile.xp>=t.xp)result=t;return result;}
+function refresh(){if(!profile)return;const r=rank(),next=TIERS.find(t=>t.xp>profile.xp);$("xp-display").textContent="⭐ "+profile.xp+" XP";$("streak-display").textContent="🔥 "+profile.streak+" day streak";$("rank-badge").textContent=r.icon+" "+r.name;$("rank-badge").className="pill rank-badge";$("welcome-title").textContent="Ready for your next quest, "+profile.username+"?";$("profile-name").textContent=profile.username;$("profile-xp").textContent=profile.xp+" XP";$("profile-rank").textContent=r.name;$("profile-streak").textContent=profile.streak+" days";$("profile-correct").textContent=profile.correct;
+const previous=TIERS.filter(t=>t.xp<=profile.xp).slice(-1)[0], progress=next?((profile.xp-previous.xp)/(next.xp-previous.xp))*100:100;$("progress-fill").style.width=Math.min(100,progress)+"%";$("progress-label").textContent=next?(next.xp-profile.xp)+" XP to "+next.name+" league":"🌟 Maximum league reached! You are legendary!";
+$("league-list").replaceChildren();TIERS.forEach(t=>{const row=document.createElement("div");row.className="league"+(profile.xp>=t.xp?" unlocked":"")+(r.name===t.name?" current":"");const left=document.createElement("span");left.textContent=t.icon+" "+t.name;const right=document.createElement("span");right.className="tag";right.textContent=profile.xp>=t.xp?(r.name===t.name?"CURRENT":"UNLOCKED"):""+t.xp+" XP";row.append(left,right);$("league-list").append(row);});}
+function startSession(name){profile=safeRead(name);try{localStorage.setItem("lingo_active_user",name);}catch(e){}$("login-screen").classList.add("hidden");$("app").classList.remove("hidden");$("scripture-pdf").src=PDF_URL+"#page=6&zoom=page-width";$("pdf-link").href=PDF_URL;refresh();showTab("home-tab");}
+function showTab(id){document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));if(id==="profile-tab")refresh();window.scrollTo({top:0,behavior:"smooth"});}
+function completeReading(){const today=new Date().toLocaleDateString("en-CA");if(profile.lastReadDate===today){showToast("🌟 Reading already counted for today. Come back tomorrow for your streak bonus!");return;}const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);const yesterdayKey=yesterday.toLocaleDateString("en-CA");profile.streak=profile.lastReadDate===yesterdayKey?profile.streak+1:1;profile.lastReadDate=today;profile.xp+=15;save();refresh();showToast("🔥 Reading complete! +15 XP. Streak: "+profile.streak+" day(s)!");}
+function newQuestion(){answered=false;currentWord=WORDS[Math.floor(Math.random()*WORDS.length)];$("target-word").textContent=currentWord.word;$("quiz-feedback").textContent="";$("quiz-feedback").style.color="";$("quiz-options").replaceChildren();const shuffled=[...currentWord.options].sort(()=>Math.random()-.5);shuffled.forEach(text=>{const b=document.createElement("button");b.type="button";b.className="option";b.textContent=text;b.addEventListener("click",()=>answer(text,b));$("quiz-options").append(b);});}
+function answer(text,button){if(answered)return;if(text===currentWord.correct){answered=true;profile.xp+=10;profile.correct+=1;save();refresh();$("quiz-feedback").textContent="🎉 Brilliant! +10 XP. You're on fire!";$("quiz-feedback").style.color="#328800";document.querySelectorAll(".option").forEach(b=>{b.disabled=true;if(b.textContent===currentWord.correct)b.classList.add("correct");});}else{button.disabled=true;button.classList.add("wrong");$("quiz-feedback").textContent="Almost! Try another answer 💪";$("quiz-feedback").style.color="#c53a4c";}}
+function speak(lang,selector){if(!("speechSynthesis"in window)||!("SpeechSynthesisUtterance"in window)){showToast("Sorry, speech audio isn't supported by this browser.");return;}const text=[...document.querySelectorAll(selector)].map(n=>n.textContent.trim()).filter(Boolean).join(". ");if(!text){showToast("No sample text to read.");return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=.92;speechSynthesis.speak(u);}
+$("login-form").addEventListener("submit",e=>{e.preventDefault();const name=$("username-input").value.trim();if(name)startSession(name);});
+$("logout").addEventListener("click",()=>{if("speechSynthesis"in window)speechSynthesis.cancel();profile=null;$("app").classList.add("hidden");$("login-screen").classList.remove("hidden");$("username-input").value="";});
+$("switch-user").addEventListener("click",()=>{if("speechSynthesis"in window)speechSynthesis.cancel();profile=null;$("app").classList.add("hidden");$("login-screen").classList.remove("hidden");$("username-input").value="";$("username-input").focus();});
+document.querySelectorAll(".nav-btn").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+$("start-reading").addEventListener("click",()=>showTab("reader-tab"));$("start-quiz").addEventListener("click",()=>{showTab("quiz-tab");newQuestion();});
+$("open-pdf").addEventListener("click",()=>window.open(PDF_URL,"_blank","noopener,noreferrer"));
+$("mark-read").addEventListener("click",completeReading);$("read-en").addEventListener("click",()=>speak("en-US",".vtext.english"));$("read-es").addEventListener("click",()=>speak("es-ES",".vtext.es"));$("next-question").addEventListener("click",newQuestion);
+try{const active=localStorage.getItem("lingo_active_user");if(active){$("username-input").value=active;startSession(active);}}catch(e){}
+newQuestion();
 </script>
 </body>
 </html>
